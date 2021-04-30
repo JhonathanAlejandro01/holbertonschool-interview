@@ -1,50 +1,44 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * listint_t *insert_node - inserts a number into a sorted singly linked list.
- *
- * Return: the address of the new node, or NULL if it failed.
+ * insert_node - inserts an int node in a sorted linked list
+ * @head: the pointer to the head node of the list
+ * @number: the number to be inserted
+ * Return: the address of the new node or NULL if it fails
  */
 listint_t *insert_node(listint_t **head, int number)
 {
-    listint_t *newNode, *tmp = *head;
+    listint_t *new, *temp;
 
-    newNode = malloc(sizeof(listint_t)); /*Assign mwmory space for newNode*/
-    if (newNode == NULL)                 /*validate malloc is good, if not return null*/
+    if (!head)
         return (NULL);
-    newNode->n = number;
-    if (*head == NULL) /*Validate if there is not elements in the list*/
+
+    new = malloc(sizeof(listint_t));
+    if (!new)
+        return (NULL);
+    new->n = number;
+
+    if (!*head)
     {
-        *head = newNode;
-        newNode->next = NULL;
-        return (newNode);
+        new->next = NULL;
+        *head = new;
+        return (*head);
     }
-    if (tmp->next == NULL)
-    { /* validate if there is only one element in the list*/
-        newNode->next = NULL;
-        tmp->next = newNode;
-        return (newNode);
-    }
-    if (number <= tmp->n)
+
+    temp = *head;
+    if (new->n < temp->n)
     {
-        newNode->next = tmp;
-        *head = newNode;
-        return (newNode);
+        new->next = *head;
+        *head = new;
+        return (*head);
     }
-    while (tmp->next != NULL)
-    { /*go through the list*/
-        if (number <= tmp->next->n)
-        {
-            newNode->next = tmp->next;
-            tmp->next = newNode;
-            return (newNode);
-        }
-        tmp = tmp->next;
+
+    while (temp->next != NULL && (new->n > temp->next->n))
+    {
+        temp = temp->next;
     }
-    tmp->next = newNode;
-    newNode->next = NULL;
-    return (newNode);
+    new->next = temp->next;
+    temp->next = new;
+
+    return (*head);
 }

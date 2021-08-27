@@ -1,16 +1,14 @@
-# 0x0E. Linear search in skip list :computer:
+# 0x0E. Linear search in skip list
 
-### The name directory :file_folder:
+## Resources:books:
+Read or watch:
 
-0x0E-linear_skip
+---
+## Learning Objectives:bulb:
+What you should learn from this project:
 
-### Files mandatory :page_facing_up:
-
-- search.h
-- 0-linear_skip.c
-
-
-## Author :black_nib:
+---
+---
 
 - **Jhonatan Angarita**
   [Twitter](https://twitter.com/Alejandro_Angar)
